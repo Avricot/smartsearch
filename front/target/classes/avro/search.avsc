@@ -1,0 +1,16 @@
+//To compile : java -jar avro-tools-1.8.0.jar compile -string schema ~/intellij/smart-search/front/src/main/resources/avro/search.avsc .
+{"namespace": "com.avricot.search.front.avro",
+ "type": "record",
+ "name": "SearchDetail1",
+ "fields": [
+     {"name": "clientId", "type": "string"},
+     {"name": "searchType", "type": "string"},
+     {"name": "searchTime", "type": "long"},
+     {"name": "sentDuration", "type": ["null", "int"], "default": null},
+     {"name": "receiveDuration", "type": ["null", "int"], "default": null},
+     {"name": "totalDuration", "type": ["null", "int"], "default": null},
+     {"name": "query", "type": ["null", "string"], "default": null},
+     {"name": "ids", "type": ["null", {"type": "array", "items": "string"}], "default": null},
+     {"name": "resultCount",  "type": ["null", "int"], "default": null}
+ ]
+}

@@ -1,0 +1,14 @@
+font/target/
+*.tmp
+*.idea
+*.iml
+*.DS_store
+front/spring_loaded
+front/src/main/webapp/dist/
+
+######################
+# Node
+######################
+front/node_modules
+
+front/bower_components
