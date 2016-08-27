@@ -1,4 +1,5 @@
-font/target/
+front/target
+*/target/
 *.tmp
 *.idea
 *.iml
