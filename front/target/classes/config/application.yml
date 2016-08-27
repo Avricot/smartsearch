@@ -1,9 +1,0 @@
-spring:
-    data:
-        cassandra:
-            contactPoints: localhost
-            protocolVersion: V4
-            compression: LZ4
-            keyspaceName: smartsearch
-            repositories:
-                enabled: false
