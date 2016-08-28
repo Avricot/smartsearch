@@ -7,6 +7,11 @@
     <artifactId>front</artifactId>
     <version>0.1.0</version>
 
+    <properties>
+        <java.version>1.8</java.version>
+    </properties>
+
+
     <parent>
         <groupId>com.avricot</groupId>
         <artifactId>search-parent</artifactId>
@@ -14,16 +19,7 @@
     </parent>
 
     <dependencyManagement>
-        <dependencies>
-            <dependency>
-                <!-- Import dependency management from Spring Boot -->
-                <groupId>org.springframework.boot</groupId>
-                <artifactId>spring-boot-dependencies</artifactId>
-                <version>1.4.0.RELEASE</version>
-                <type>pom</type>
-                <scope>import</scope>
-            </dependency>
-        </dependencies>
+
     </dependencyManagement>
 
     <dependencies>
@@ -43,7 +39,6 @@
         <dependency>
             <groupId>javax.inject</groupId>
             <artifactId>javax.inject</artifactId>
-            <version>1</version>
         </dependency>
         <dependency>
             <groupId>org.springframework.boot</groupId>
@@ -65,10 +60,10 @@
             <artifactId>spring-context-support</artifactId>
         </dependency>
         <!-- jackson -->
-        <dependency>
-            <groupId>com.fasterxml.jackson.datatype</groupId>
-            <artifactId>jackson-datatype-hppc</artifactId>
-        </dependency>
+        <!--<dependency>-->
+            <!--<groupId>com.fasterxml.jackson.datatype</groupId>-->
+            <!--<artifactId>jackson-datatype-hppc</artifactId>-->
+        <!--</dependency>-->
         <dependency>
             <groupId>com.fasterxml.jackson.datatype</groupId>
             <artifactId>jackson-datatype-jsr310</artifactId>
@@ -81,7 +76,6 @@
         <dependency>
             <groupId>net.logstash.logback</groupId>
             <artifactId>logstash-logback-encoder</artifactId>
-            <version>${logstash-logback-encoder.version}</version>
             <exclusions>
                 <exclusion>
                     <groupId>ch.qos.logback</groupId>
@@ -103,7 +97,6 @@
         <dependency>
             <groupId>com.datastax.cassandra</groupId>
             <artifactId>cassandra-driver-core</artifactId>
-            <version>${datastax-driver.version}</version>
             <exclusions>
                 <exclusion>
                     <groupId>com.codahale.metrics</groupId>
@@ -114,17 +107,14 @@
         <dependency>
             <groupId>com.datastax.cassandra</groupId>
             <artifactId>cassandra-driver-extras</artifactId>
-            <version>${datastax-driver.version}</version>
         </dependency>
         <dependency>
             <groupId>com.datastax.cassandra</groupId>
             <artifactId>cassandra-driver-mapping</artifactId>
-            <version>${datastax-driver.version}</version>
         </dependency>
         <dependency>
             <groupId>net.jpountz.lz4</groupId>
             <artifactId>lz4</artifactId>
-            <version>${lz4.version}</version>
         </dependency>
     </dependencies>
 
