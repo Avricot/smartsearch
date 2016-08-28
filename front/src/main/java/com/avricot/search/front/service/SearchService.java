@@ -28,12 +28,12 @@ import java.util.UUID;
 @Service
 public class SearchService {
     private static final int QUERY_MAX_LENGHT = 1000;
-    private final Logger log = LoggerFactory.getLogger(SearchService.class);
+    private final Logger log = LoggerFactory.getLogger(SerializationService.class);
 
     @Inject
     private SearchRepository searchRepository;
     @Inject
-    private ClientRepository clientRepository;
+    private SerializationService serializationService;
     @Inject
     private ClientService clientService;
 
@@ -66,7 +66,7 @@ public class SearchService {
                     .setTotalDuration(searchDTO.getTotalDuration())
                     .setResultCount(searchDTO.getResultCount())
                     .build();
-            final byte[] content = serializeSearchDetail(detail);
+            final byte[] content = serializationService.serializeSearchDetail(detail);
             Search search = new Search();
             search.setSearchTime(searchTime);
             search.setContent(ByteBuffer.wrap(content));
@@ -78,18 +78,5 @@ public class SearchService {
         }
     }
 
-    protected byte[] serializeSearchDetail(final SearchDetail1 detail) throws IOException {
-        ByteArrayOutputStream baos = new ByteArrayOutputStream();
-        final BinaryEncoder encoder = EncoderFactory.get().binaryEncoder(baos, null);
-        datumWriter.write(detail, encoder);
-        encoder.flush();
-        return baos.toByteArray();
-    }
-
-
-    protected SearchDetail1 deserializeSearchDetail(final byte[] bytes) throws IOException {
-        BinaryDecoder decoder = DecoderFactory.get().binaryDecoder(bytes, null);
-        return datumReader.read(null, decoder);
-    }
 
 }

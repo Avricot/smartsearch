@@ -1,18 +1,11 @@
 package com.avricot.search.front.web.rest;
 
 import com.avricot.search.front.service.SearchDTO;
-import com.avricot.search.front.service.SearchService;
+import com.avricot.search.front.service.SerializationService;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import org.springframework.http.HttpStatus;
-import org.springframework.validation.BindingResult;
-import org.springframework.validation.SmartValidator;
-import org.springframework.validation.Validator;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.web.servlet.ModelAndView;
 
 import javax.inject.Inject;
-import javax.servlet.http.HttpServletRequest;
-import javax.validation.Valid;
 
 @RestController
 public class HelloController {
@@ -20,7 +13,7 @@ public class HelloController {
     @Inject
     private ObjectMapper mapper;
     @Inject
-    private SearchService searchService;
+    private SerializationService searchService;
 
     @RequestMapping("/")
     public String index() throws Exception {

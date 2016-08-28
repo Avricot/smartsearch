@@ -14,8 +14,16 @@ object SplitLine {
       case 2 => (args(0), args(1))
       case _ => ("/home/quentin/Downloads/wiki.fr.mini.text", "/home/quentin/Downloads/wiki.fr.mini.text.1000")
     }
-    val sparkSession = SparkSession.builder().appName("Word2vec").master("local").getOrCreate()
+
+    //val sparkSession = SparkSession.builder().appName("Decode").master("local").getOrCreate()
+
     import sparkSession.implicits._
+    import com.datastax.spark.connector._
+
+    val conf=new SparkConf(true)
+      .set("spark.cassandra.connection.host","127.0.0.1")
+
+    val sc=new SparkContext("local","the_keyspace",conf)
 
     val input = sparkSession.read.text(path_input).as[String]
     input.show()
