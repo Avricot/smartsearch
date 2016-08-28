@@ -1,10 +1,8 @@
 package com.avricot.search.front.service;
 
-import com.datastax.driver.core.utils.UUIDs;
-
 import javax.validation.constraints.NotNull;
+import java.util.ArrayList;
 import java.util.List;
-import java.util.Set;
 import java.util.UUID;
 
 /**
@@ -19,8 +17,9 @@ public class SearchDTO {
     private int sentDuration;
     private int receiveDuration;
     private int totalDuration;
+    @NotNull
     private String query;
-    private List<String> ids;
+    private List<String> ids = new ArrayList<>();
     private int resultCount;
 
     public UUID getClientId() {

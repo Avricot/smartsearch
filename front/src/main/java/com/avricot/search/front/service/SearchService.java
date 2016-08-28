@@ -4,6 +4,7 @@ import com.avricot.search.front.avro.SearchDetail1;
 import com.avricot.search.front.domain.Search;
 import com.avricot.search.front.repository.ClientRepository;
 import com.avricot.search.front.repository.SearchRepository;
+import com.avricot.search.front.util.DateUtils;
 import com.datastax.driver.core.utils.UUIDs;
 import org.apache.avro.io.BinaryDecoder;
 import org.apache.avro.io.BinaryEncoder;
@@ -53,10 +54,11 @@ public class SearchService {
             log.info("invalid clientId/referer, log skipped, search={}", searchDTO);
         } else {
             final UUID searchTime = UUIDs.timeBased();
+            final long timestamp = UUIDs.unixTimestamp(searchTime);
             final SearchDetail1 detail = SearchDetail1.newBuilder()
                     .setClientId(searchDTO.getClientId().toString())
                     .setSearchType(searchDTO.getSearchType())
-                    .setSearchTime(UUIDs.unixTimestamp(searchTime))
+                    .setSearchTime(timestamp)
                     .setQuery(searchDTO.getQuery())
                     .setIds(searchDTO.getIds())
                     .setReceiveDuration(searchDTO.getReceiveDuration())
@@ -69,6 +71,7 @@ public class SearchService {
             search.setSearchTime(searchTime);
             search.setContent(ByteBuffer.wrap(content));
             search.setSearchType(searchDTO.getSearchType());
+            search.setPeriodPartition(DateUtils.roundTimestampHourly(timestamp));
             search.setServerPartition(1);
             search.setClientId(searchDTO.getClientId());
             searchRepository.save(search);

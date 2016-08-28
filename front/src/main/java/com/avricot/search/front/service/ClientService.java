@@ -23,6 +23,12 @@ public class ClientService {
         if(client == null){
             return false;
         }
+        if(referer == null){
+            referer = "null";
+        }
+        if(client.getReferers() == null){
+            return false;
+        }
         return client.getReferers().contains(referer);
     }
 }

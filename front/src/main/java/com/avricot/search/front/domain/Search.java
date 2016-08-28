@@ -20,7 +20,7 @@ public class Search implements Serializable {
     private String searchType;
 
     @PartitionKey(2)
-    private int periodPartition;
+    private long periodPartition;
 
     @PartitionKey(3)
     private int serverPartition;
@@ -46,11 +46,11 @@ public class Search implements Serializable {
         this.searchType = searchType;
     }
 
-    public int getPeriodPartition() {
+    public long getPeriodPartition() {
         return periodPartition;
     }
 
-    public void setPeriodPartition(final int periodPartition) {
+    public void setPeriodPartition(final long periodPartition) {
         this.periodPartition = periodPartition;
     }
 
